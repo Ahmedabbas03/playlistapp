@@ -1,5 +1,6 @@
 require("dotenv").config();
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 
 const playlistsRoutes = require("./routes/playlists");
@@ -10,6 +11,16 @@ const port = process.env.PORT;
 
 // Middleware
 app.use(express.json());
+
+// Enable CORS for specified origins
+app.use(
+  cors({
+    origin: ["http://localhost:4000", "http://playlistapp.onrender.com"],
+  })
+);
+
+// Parse URL-encoded data
+app.use(express.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
