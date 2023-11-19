@@ -10,17 +10,11 @@ const app = express();
 const port = process.env.PORT;
 
 // Middleware
+const corsOptions = {
+  origin: "http://localhost:3000", // frontend URI (ReactJS)
+};
 app.use(express.json());
-
-// Enable CORS for specified origins
-app.use(
-  cors({
-    origin: ["http://localhost:4000", "http://playlistapp.onrender.com"],
-  })
-);
-
-// Parse URL-encoded data
-app.use(express.urlencoded({ extended: true }));
+app.use(cors(corsOptions));
 
 app.use((req, res, next) => {
   console.log(req.path, req.method);
