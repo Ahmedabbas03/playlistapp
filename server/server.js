@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 
 const playlistsRoutes = require("./routes/playlists");
 const userRoutes = require("./routes/user");
+const musicRoutes = require("./routes/musicRoutes");
 
 const app = express();
 const port = process.env.PORT;
@@ -21,9 +22,26 @@ app.use((req, res, next) => {
   next();
 });
 
+// MongoDB Schema and Model
+const MusicSchema = new mongoose.Schema({
+  date: Date,
+  data: [
+    {
+      name: String,
+      artist: String,
+      image: String,
+      rank: Number,
+      last_week_rank: Number,
+      peak_rank: Number,
+      weeks_on_chart: Number,
+    },
+  ],
+});
+
 // Routes
 app.use("/api/playlists", playlistsRoutes);
 app.use("/api/user", userRoutes);
+app.use("/api/music", musicRoutes);
 
 // Connect to Database
 mongoose

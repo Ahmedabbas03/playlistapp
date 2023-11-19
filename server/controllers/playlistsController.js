@@ -1,5 +1,6 @@
 const Playlist = require("../models/playlistsModel");
 const mongoose = require("mongoose");
+const { faker } = require("@faker-js/faker");
 
 // GET all users with their playlists
 const getUsersWithPlaylists = async (req, res) => {
