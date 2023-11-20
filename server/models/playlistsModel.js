@@ -6,7 +6,7 @@ const playlistSchema = new Schema(
   {
     user_id: {
       type: Schema.Types.ObjectId,
-      ref: "User", // Reference to the User model
+      ref: "User",
     },
     genre: {
       type: String,
